@@ -1,0 +1,11 @@
+::ng-deep mat-toolbar {
+    background-color: rgba(0, 0, 0, 0.068) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+    width: 40%;
+    position: relative;
+}
