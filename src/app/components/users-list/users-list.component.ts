@@ -17,24 +17,42 @@ export class UsersListComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getUsersList(this.currentPage);
+    //check cashe date
+    if (JSON.parse(localStorage.getItem('usersList')) && this.currentPage == 1) {
+      this.getCasheUsersList()
+    }else{
+      this.getUsersList(this.currentPage);
+    }
   }
 
+  // fetch users list from api
   getUsersList(page) {
     this.loading = true;
     this.userService.getUsers(page).subscribe((res) => {
       this.users = res.data;
+      localStorage.setItem('usersList' , JSON.stringify(this.users));
       this.totalPage = res.total_pages;
+      localStorage.setItem('totalPages' ,JSON.stringify(this.totalPage));
       this.pages = Array(this.totalPage).fill(0).map((x, i) => i + 1);
       this.loading = false;
     });
   }
 
+  // fetch users list from localStorage
+  getCasheUsersList(){
+    this.users = JSON.parse(localStorage.getItem('usersList'));
+    this.totalPage = JSON.parse(localStorage.getItem('totalPages'));
+    this.pages =  Array(this.totalPage).fill(0).map((x, i) => i + 1);
+    this.loading = false;
+  }
+
+  // pagination
   goToPage(page: number){
     this.currentPage = page;
     this.getUsersList(page);
   }
 
+  // route to user information page
   goToUserDetails(userId: number): void {
     this.router.navigate([`/user`, userId]);
   }

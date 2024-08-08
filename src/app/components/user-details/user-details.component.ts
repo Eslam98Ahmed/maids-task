@@ -15,12 +15,14 @@ export class UserDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute , private userService:UserService) { }
 
   ngOnInit(): void {
+    // get user id to fetch data
     this.route.params.subscribe(params => {
       const userId = +params['id'];
       this.fetchUserDetails(userId);
     });
   }
 
+  // get user data
   fetchUserDetails(id: number) {
     this.loading = true;
     this.userService.getUserInfo(id).subscribe(res => {
