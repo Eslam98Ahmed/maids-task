@@ -1,5 +1,25 @@
 <mat-toolbar>
     <div class="search">
-        <input type="text" class="form-control" placeholder="Search User By Id">
+        <input type="number" class="form-control" [(ngModel)]="inputData" placeholder="Search User By Id" (keyup)="onSearch($event)">
+        <div class="result" *ngIf="inputData">
+            <div class="container" *ngIf="isResult">
+                <div class="row user-card py-2" (click)="goToUserDetails(userData?.id)">
+                    <div class="col-4">
+                        <div class="user-img d-flex justify-content-center align-items-center">
+                           <img [src]="userData?.avatar" alt="User Image">
+                        </div>
+                    </div>
+                    <div class="col-6 px-0">
+                        <div class="user-info">
+                            <h3><span>{{userData?.first_name}}</span> <span class="px-1">{{userData?.last_name}}</span></h3>
+                            <p class="text-muted user-email">{{userData?.email}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!isResult" class="no-result d-flex justify-content-center align-items-center">
+                <p class="py-3">Not Found User</p>
+            </div>
+        </div>
     </div>
 </mat-toolbar>

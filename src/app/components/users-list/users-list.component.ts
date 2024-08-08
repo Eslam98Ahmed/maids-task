@@ -9,7 +9,7 @@ import { User } from './../../interfaces/user';
 })
 export class UsersListComponent implements OnInit {
   users: User[] = [];
-  loading: boolean = false;
+  loading: boolean = true;
   currentPage: number = 1;
   pages: number[] = [];
   totalPage: number =1;

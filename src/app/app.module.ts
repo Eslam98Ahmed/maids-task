@@ -12,7 +12,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,9 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatToolbarModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
+    FormsModule,
     BrowserAnimationsModule,
   ],
   providers: [],

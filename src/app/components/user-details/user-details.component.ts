@@ -10,7 +10,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserDetailsComponent implements OnInit {
   user: User;
-  loading:boolean = false;
+  loading:boolean = true;
 
   constructor(private route: ActivatedRoute , private userService:UserService) { }
 
@@ -24,9 +24,7 @@ export class UserDetailsComponent implements OnInit {
   fetchUserDetails(id: number) {
     this.loading = true;
     this.userService.getUserInfo(id).subscribe(res => {
-      this.user = res.data;
-      console.log(res);
-      
+      this.user = res.data;      
       this.loading = false;
     });
   }

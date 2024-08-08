@@ -1,1 +1,18 @@
-<p>user-details works!</p>
+<div class="loading" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="container py-5" *ngIf="!loading">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="user-img d-flex justify-content-center align-items-center">
+                <img [src]="user?.avatar" alt="User Image" class="w-100">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h1 class="user-name font-bold m-0 pb-4"><span>{{user?.first_name}}</span> <span class="px-1">{{user?.last_name}}</span></h1>
+            <h5 class="text-muted pb-4"><i class="fa fa-envelope me-2" aria-hidden="true"></i>{{user?.email}}</h5>
+            <button mat-raised-button routerLink="/">Return To Home</button>
+        </div>
+    </div>
+</div>
